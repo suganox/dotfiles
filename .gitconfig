@@ -1,0 +1,22 @@
+[user]
+    name = Ryohei Sugano
+    email = r.sugano@sunl.jp
+[core]
+    excludesfile = /Users/sugano/.gitignore
+    editor = vim
+    ignorecase  = false
+[color]
+    diff = auto
+    branch = auto
+    status = auto
+    ui = auto
+[alias]
+    co = checkout
+    st = status
+    br = branch
+[pull]
+    rebase = false
+[fetch]
+    prune = true
+[init]
+    defaultBranch = main
