@@ -34,6 +34,9 @@ return {
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+      require('mini.align').setup()
+      require('mini.comment').setup()
+      require('mini.starter').setup()
     end,
   },
 }
