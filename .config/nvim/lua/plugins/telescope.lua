@@ -88,13 +88,12 @@ return {
       vim.keymap.set('n', '<C-f><C-f>', builtin.find_files, { desc = '[F]ind [F]iles' })
       vim.keymap.set('n', '<C-f><C-s>', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<C-f><C-w>', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-      vim.keymap.set('n', '<C-f><C-g', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<C-f><C-g>', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<C-f><C-d>', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<C-f><C-r>', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<C-f>.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<C-f><C-b>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = 'Git Status' })
-      vim.keymap.set('n', '<leader>gc', builtin.git_status, { desc = 'Git Status' })
     end,
   },
 }
