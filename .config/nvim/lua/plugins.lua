@@ -23,8 +23,8 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
+  -- { 'numToStr/Comment.nvim', opts = {} },
+  --
   require 'plugins/gitsigns',
 --  require 'plugins/which-key',
   require 'plugins/telescope',
@@ -32,13 +32,14 @@ require('lazy').setup({
 --  require 'plugins/conform',
   require 'plugins/cmp',
   require 'plugins/tokyonight',
---  require 'plugins/todo-comments',
+  require 'plugins/todo-comments',
   require 'plugins/mini',
   require 'plugins/treesitter',
   require 'plugins/neo-tree',
   require 'plugins/autopairs',
   require 'plugins/copilot',
   require 'plugins/copilotchat',
+  require 'plugins/rainbow-csv',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
