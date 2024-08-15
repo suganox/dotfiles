@@ -21,17 +21,30 @@ end)
 
 local act = wezterm.action
 config.keys = {
-  { key = 'LeftArrow', mods = 'CMD|SHIFT', action = act.ActivateTabRelative(-1) },
-  { key = 'RightArrow', mods = 'CMD|SHIFT', action = act.ActivateTabRelative(1) },
-  { key = 'i', mods = 'CMD|SHIFT', action = act.SpawnTab('DefaultDomain') },
-  { key = 'x', mods = 'CMD|SHIFT', action = act.CloseCurrentTab {confirm=true} },
-  { key = 'UpArrow', mods = 'CMD|SHIFT', action = act.SwitchWorkspaceRelative(1) },
-  { key = 'DownArrow', mods = 'CMD|SHIFT', action = act.SwitchWorkspaceRelative(-1) },
+  { key = 'n', mods = 'CMD|SHIFT', action = act.SwitchWorkspaceRelative(1) },
+  { key = 'p', mods = 'CMD|SHIFT', action = act.SwitchWorkspaceRelative(-1) },
+  { key = 'l', mods = 'CMD|SHIFT', action = act.ShowLauncherArgs { flags = 'WORKSPACES' } },
+  { key = '[', mods = 'CMD|OPT', action = act.ActivateTabRelative(-1) },
+  { key = ']', mods = 'CMD|OPT', action = act.ActivateTabRelative(1) },
+  { key = '1', mods = 'CMD|OPT', action = act.ActivateTab(0) },
+  { key = '2', mods = 'CMD|OPT', action = act.ActivateTab(1) },
+  { key = '3', mods = 'CMD|OPT', action = act.ActivateTab(3) },
+  { key = '4', mods = 'CMD|OPT', action = act.ActivateTab(6) },
+  { key = '5', mods = 'CMD|OPT', action = act.ActivateTab(5) },
+  { key = '6', mods = 'CMD|OPT', action = act.ActivateTab(6) },
+  { key = '7', mods = 'CMD|OPT', action = act.ActivateTab(7) },
+  { key = '8', mods = 'CMD|OPT', action = act.ActivateTab(8) },
+  { key = '9', mods = 'CMD|OPT', action = act.ActivateTab(9) },
+  { key = 's', mods = 'CTRL|SHIFT', action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+  { key = 'v', mods = 'CTRL|SHIFT', action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+  { key = 'w', mods = 'CTRL|SHIFT', action = act.CloseCurrentPane { confirm = true } },
   {
     key = 'c',
     mods = 'CMD|SHIFT',
     action = act.PromptInputLine {
-      description = "(wezterm) Create new workspace:",
+      description = wezterm.format {
+        { Text = 'Enter name for new workspace' },
+      },
       action = wezterm.action_callback(function(window, pane, line)
         if line then
           window:perform_action(
@@ -48,7 +61,9 @@ config.keys = {
     key = 'r',
     mods = 'CMD|SHIFT',
     action = act.PromptInputLine {
-      description = '(wezterm) Set workspace title:',
+      description = wezterm.format {
+        { Text = 'Rename workspace' },
+      },
       action = wezterm.action_callback(function(line)
         if line then
           wezterm.mux.rename_workspace(
@@ -58,29 +73,6 @@ config.keys = {
         end
       end),
     },
-  },
-  {-- List workspace
-    key = 'l',
-    mods = 'CMD|SHIFT',
-    action = wezterm.action_callback (function(win, pane)
-      local workspaces = {}
-      for i, name in ipairs(wezterm.mux.get_workspace_names()) do
-        table.insert(workspaces, {
-          id = name,
-          label = string.format("%d. %s", i, name),
-        })
-      end
-      local current = wezterm.mux.get_active_workspace()
-      win:perform_action(act.InputSelector {
-        action = wezterm.action_callback(function(_, _, id)
-        win:perform_action(act.SwitchToWorkspace { name = id }, pane)
-        end),
-        title = "Select workspace",
-        choices = workspaces,
-        fuzzy = true,
-        fuzzy_description = string.format("Current workspace: %s ", current),
-      }, pane)
-    end),
   },
 }
 
